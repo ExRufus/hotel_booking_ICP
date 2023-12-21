@@ -1,0 +1,5 @@
+service: () -> {
+    addHotelRoomReservation: (text, text, text, nat64, text, nat64) -> (record {id:principal; checkInDate:text; guestName:text; checkOutDate:text; amount:nat64; roomType:text; numberOfGuests:nat64});
+    getRoomDetails: (principal) -> (opt record {id:principal; checkInDate:text; guestName:text; checkOutDate:text; amount:nat64; roomType:text; numberOfGuests:nat64}) query;
+    getRoomList: () -> (vec record {id:principal; checkInDate:text; guestName:text; checkOutDate:text; amount:nat64; roomType:text; numberOfGuests:nat64}) query;
+}

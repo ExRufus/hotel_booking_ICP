@@ -1,0 +1,13 @@
+{
+    "canisters": {
+        "hotel_booking_ICP": {
+            "type": "custom",
+            "main": "src/index.ts",
+            "candid": "src/index.did",
+            "build": "npx azle hotel_booking_ICP",
+            "wasm": ".azle/hotel_booking_ICP/hotel_booking_ICP.wasm",
+            "gzip": true
+        }
+    }
+}
+
