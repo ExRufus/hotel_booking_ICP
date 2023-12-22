@@ -13,16 +13,15 @@ export default Canister({
       if (currentAmount != undefined) {
         const newAmount = currentAmount + amount;
 
-        // Perbarui customer dengan nilai baru
         customers.insert(principal, {
           id: principal,
           guestName: '',
           amount: newAmount,
         });
 
-        return `Balance added successfully. New balance: ${newAmount}`;
+        return `Balance added successfully. New balance: ${newAmount} current Balance ${amount}`;
       } else {
-        return 'Customer data is incomplete';
+        return 'Customer data is incomplete. New balance: ${newAmount} current Balance ${amount}';
       }
     } else {
       return 'Customer not found';
