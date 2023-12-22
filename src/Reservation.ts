@@ -1,6 +1,6 @@
-import { Canister, nat64, Opt, Principal, query, Record, StableBTreeMap, text, update, Variant, Vec } from 'azle';
+import { Canister, Principal, query, Record, StableBTreeMap, text, update, Variant, Vec, nat64, Some, Opt } from 'azle';
 
-const HotelRoomReservation = Record({
+export const HotelRoomReservation = Record({
     id: Principal,
     guestName: text,
     checkInDate: text,
@@ -8,22 +8,13 @@ const HotelRoomReservation = Record({
     numberOfGuests: nat64,
     roomType: text,
     amount: nat64,
-  });
+});
 
 type HotelRoomReservation = typeof HotelRoomReservation.tsType;
 
-
-const HotelReservationError = Variant({
-    RoomTypeNotAvailable: text,
-    NoAvailableRooms: text,
-});
-
-type HotelReservationError = typeof HotelReservationError.tsType;
-
-let Rooms = StableBTreeMap<Principal, HotelRoomReservation>(0);
+export let Rooms = StableBTreeMap<Principal, HotelRoomReservation>(0);
 
 export default Canister({
-
     addHotelRoomReservation: update([text, text, text, nat64, text, nat64], HotelRoomReservation, (checkInDate, guestName, checkOutDate, amount, roomType, numberOfGuests) => {
         const id = generateId();
         const reservation: HotelRoomReservation = {
@@ -34,9 +25,9 @@ export default Canister({
             numberOfGuests: numberOfGuests,
             roomType: roomType,
             amount: amount,
-          };
-          Rooms.insert(id, reservation);
-          return reservation;
+        };
+        Rooms.insert(id, reservation);
+        return reservation;
     }),
 
     getRoomList: query([], Vec(HotelRoomReservation), () => {
@@ -44,15 +35,10 @@ export default Canister({
     }),
 
     getRoomDetails: query([Principal], Opt(HotelRoomReservation), (id) => {
-        return Rooms.get(id);
-    }),
-
-    // inquiry: query([Principal], nat64, (Principal) => {
-    //     return Rooms(.get(Principal));
-    // })
-
-
-})
+        const room = Rooms.get(id);
+        return room;
+      })
+});
 
 function generateId(): Principal {
     const randomBytes = new Array(29)

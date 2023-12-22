@@ -1,0 +1,5 @@
+service: () -> {
+    createUser: (text, nat64) -> (record {id:principal; guestName:text; amount:nat64});
+    readCustomerId: (principal) -> (opt record {id:principal; guestName:text; amount:nat64}) query;
+    readCustomers: () -> (vec record {id:principal; guestName:text; amount:nat64}) query;
+}

@@ -1,0 +1,3 @@
+service: () -> {
+    addBalance: (principal, nat64) -> (text);
+}

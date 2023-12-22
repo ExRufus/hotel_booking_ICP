@@ -1,11 +1,27 @@
 {
     "canisters": {
-        "hotel_booking_ICP": {
+        "CustomerAccount": {
             "type": "custom",
-            "main": "src/index.ts",
-            "candid": "src/index.did",
-            "build": "npx azle hotel_booking_ICP",
-            "wasm": ".azle/hotel_booking_ICP/hotel_booking_ICP.wasm",
+            "main": "src/CustomerAccount.ts",
+            "candid": "src/CustomerAccount.did",
+            "build": "npx azle CustomerAccount",
+            "wasm": ".azle/CustomerAccount/CustomerAccount.wasm",
+            "gzip": true
+        },
+        "Reservation": {
+            "type": "custom",
+            "main": "src/Reservation.ts",
+            "candid": "src/Reservation.did",
+            "build": "npx azle Reservation",
+            "wasm": ".azle/Reservation/Reservation.wasm",
+            "gzip": true
+        },
+        "Transactions": {
+            "type": "custom",
+            "main": "src/Transactions.ts",
+            "candid": "src/Transactions.did",
+            "build": "npx azle Transactions",
+            "wasm": ".azle/Transactions/Transactions.wasm",
             "gzip": true
         }
     }
