@@ -10,16 +10,21 @@ export default Canister({
     if (customer) {
       const currentAmount = customer.Some?.amount;
 
-      if (currentAmount != undefined) {
-        const newAmount = currentAmount + amount;
+      if (currentAmount !== undefined) {
+        try {
+          const newAmount = currentAmount + amount;
 
-        customers.insert(principal, {
-          id: principal,
-          guestName: '',
-          amount: newAmount,
-        });
+          customers.insert(principal, {
+            id: principal,
+            guestName: '',
+            amount: newAmount,
+          });
 
-        return `Balance added successfully. New balance: ${newAmount} current Balance ${amount}`;
+          return `Balance added successfully. New balance: ${newAmount} current Balance ${amount}`;
+        } catch (error) {
+          // Handle the error and return an appropriate response
+          return `An error occurred: ${error.message || "Unknown error"}`;
+        }
       } else {
         return 'Customer data is incomplete. New balance: ${newAmount} current Balance ${amount}';
       }
